@@ -1,9 +1,15 @@
-import { createApp } from 'vue'
+import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
-import store from './store'
+import { createRouter } from './router'
+import { createStore } from './store'
 
 export function createAPP () {
-  const app = createApp(App).use(store).use(router)
+  const router = createRouter()
+  const store = createStore()
+  const app = new Vue({
+    router,
+    store,
+    render: h => h(App)
+  })
   return { app, router, store }
 }

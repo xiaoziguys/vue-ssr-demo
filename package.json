@@ -4,21 +4,25 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "ssr:serve": "NODE_ENV=development TARGET_NODE=node PORT=3000 CLIENT_PORT=8080 node ./app/server.js",
+    "dev": "concurrently 'npm run serve' 'npm run ssr:serve'",
     "build": "vue-cli-service build && TARGET_NODE=node vue-cli-service build --no-clean",
     "lint": "vue-cli-service lint",
     "start": "NODE_ENV=production TARGET_NODE=node PORT=3000 node ./app/server.js"
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "concurrently": "^6.2.1",
     "core-js": "^3.6.5",
     "ejs": "^3.1.6",
     "koa": "^2.13.1",
     "koa-send": "^5.0.1",
     "lodash.get": "^4.4.2",
+    "lodash.merge": "^4.6.2",
     "memory-fs": "^0.5.0",
-    "vue": "^3.0.0",
-    "vue-router": "^4.0.0-0",
-    "vuex": "^4.0.0-0"
+    "vue": "^2.6.14",
+    "vue-router": "^3.5.2",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -35,9 +39,10 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^7.0.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
     "vue-server-renderer": "^2.6.14",
-    "vue-template-compiler": "^2.6.14"
+    "vue-template-compiler": "^2.6.14",
+    "webpack-node-externals": "^3.0.0"
   }
 }

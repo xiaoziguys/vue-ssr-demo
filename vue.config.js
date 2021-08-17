@@ -5,7 +5,6 @@ const merge = require('lodash.merge')
 
 const TARGET_NODE = process.env.TARGET_NODE === 'node'
 const DEV_MODE = process.env.NODE_ENV === 'development'
-
 const config = {
   publicPath: process.env.NODE_ENV === 'production'
     // 在这里定义产品环境和其它环境的 publicPath
@@ -87,7 +86,7 @@ const config = {
       .end()
       .target('node')
       .devtool('source-map')
-      .externals(nodeExternals({ whitelist: /\.css$/ }))
+      .externals(nodeExternals({ allowlist: /\.css$/ }))
       .output.filename('server-bundle.js')
       .libraryTarget('commonjs2')
       .end()

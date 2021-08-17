@@ -6,15 +6,13 @@ const getBookFromBackendApi = id => new Promise((resolve, reject) => {
   }, 300)
 })
 
-export const Book = {
-  namespaced: true,
-
+export default {
   state: {
     items: {}
   },
 
   actions: {
-    fetchItem ({ commit }, id) {
+    fetchItem ({ commit }, { id }) {
       return getBookFromBackendApi(id).then(item => {
         commit('setItem', { id, item })
       })
@@ -23,6 +21,7 @@ export const Book = {
 
   mutations: {
     setItem (state, { id, item }) {
+      console.log('setItem')
       Vue.set(state.items, id, item)
     }
   }

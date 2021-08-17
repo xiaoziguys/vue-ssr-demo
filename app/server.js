@@ -30,7 +30,12 @@ app.use(async (ctx, next) => {
   }
 })
 
-app.use(require('./middlewares/prod.ssr.js'))
+if (process.env.NODE_ENV === 'production') {
+  app.use(require('./middlewares/prod.ssr.js'))
+} else {
+  app.use(require('./middlewares/dev.static.js'))
+  app.use(require('./middlewares/dev.ssr.js'))
+}
 
 app.listen(port, host, () => {
   console.log(`[${process.pid}]server started at ${host}:${port}`)

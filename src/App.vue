@@ -1,11 +1,35 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div>
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </div>
+    <router-view/>
+    <button @click="getABook">获取一本书</button>
+    {{book}}
   </div>
-  <router-view/>
 </template>
-
+<script>
+export default {
+  name: 'App',
+  data () {
+    return {
+      id: 1
+    }
+  },
+  computed: {
+    book () {
+      console.log(this.$store.state.book.items)
+      return this.$store.state.book.items
+    }
+  },
+  methods: {
+    getABook () {
+      this.$store.dispatch('fetchItem', { id: this.id++ })
+    }
+  }
+}
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
